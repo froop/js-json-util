@@ -12,6 +12,13 @@
 		}
 	});
 
+	test("clone", function () {
+		var result = JsonUtil.clone(JSON_DATA1);
+
+		notEqual(result, JSON_DATA1);
+		deepEqual(result, JSON_DATA1);
+	});
+
 	test("alias frist", function () {
 		var result = JsonUtil.alias(JSON_DATA1, {
 			prop1: "alias1"
