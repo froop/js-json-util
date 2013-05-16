@@ -12,11 +12,19 @@
 		}
 	});
 
-	test("clone", function () {
+	test("clone object", function () {
 		var result = JsonUtil.clone(JSON_DATA1);
 
 		notEqual(result, JSON_DATA1);
 		deepEqual(result, JSON_DATA1);
+	});
+
+	test("clone array", function () {
+		var array = [JSON_DATA1, JSON_DATA2];
+		var result = JsonUtil.clone(array);
+
+		notEqual(result, array);
+		deepEqual(result, array);
 	});
 
 	test("alias frist", function () {
