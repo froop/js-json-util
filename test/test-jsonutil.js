@@ -1,4 +1,6 @@
 (function () {
+	"use strict";
+
 	var JSON_DATA1 = {
 		prop1: "value1",
 		prop2: "value2"
@@ -7,6 +9,7 @@
 		prop1: "value1b",
 		prop2: "value2b"
 	};
+
 	module("JsonUtil", {
 		setup: function () {
 		}
@@ -80,6 +83,27 @@
 			prop2: "value2"
 		});
 	});
+
+//TODO
+//	test("alias delete by null", function () {
+//		var result = JsonUtil.alias(JSON_DATA1, {
+//			prop1: null
+//		});
+//
+//		deepEqual(result, {
+//			prop2: "value2"
+//		});
+//	});
+//
+//	test("alias delete by undefined", function () {
+//		var result = JsonUtil.alias(JSON_DATA1, {
+//			prop2: undefined
+//		});
+//
+//		deepEqual(result, {
+//			prop1: "value1"
+//		});
+//	});
 
 	test("aliasList", function () {
 		var result = JsonUtil.aliasList([JSON_DATA1, JSON_DATA2], {
