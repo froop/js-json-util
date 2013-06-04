@@ -118,4 +118,43 @@
 			prop2: "value2b"
 		}]);
 	});
+
+	test("extract first", function () {
+		var result = JsonUtil.extract(JSON_DATA1, ["prop1"]);
+
+		deepEqual(result, {
+			prop1: "value1"
+		});
+	});
+
+	test("extract last", function () {
+		var result = JsonUtil.extract(JSON_DATA1, ["prop2"]);
+
+		deepEqual(result, {
+			prop2: "value2"
+		});
+	});
+
+	test("extract all", function () {
+		var result = JsonUtil.extract(JSON_DATA1, ["prop1", "prop2"]);
+
+		deepEqual(result, {
+			prop1: "value1",
+			prop2: "value2"
+		});
+	});
+
+	test("extract empty", function () {
+		var result = JsonUtil.extract(JSON_DATA1, []);
+
+		deepEqual(result, {});
+	});
+
+	test("extract not exists", function () {
+		var result = JsonUtil.extract(JSON_DATA1, ["prop3"]);
+
+		deepEqual(result, {
+			prop3: undefined
+		});
+	});
 })();

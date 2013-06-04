@@ -42,4 +42,17 @@ var JsonUtil = {};
 
 		return res;
 	};
+
+	JsonUtil.extract = function (obj, list) {
+		var res = {};
+		var idx = 0;
+		var length = list.length;
+
+		for (idx = 0; idx < length; idx++) {
+			var key = list[idx];
+			res[key] = obj[key];
+		}
+
+		return res;
+	};
 })();
