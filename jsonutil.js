@@ -1,7 +1,7 @@
 /*
  * jsonutil.js - JSON utilities.
  *
- * Created by froop http://github.com/froop/js-json-util
+ * Copyright (c) 2013 froop http://github.com/froop/js-json-util
  * The MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 /*global JSON */
