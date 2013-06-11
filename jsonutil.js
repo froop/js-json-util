@@ -14,6 +14,59 @@ var JsonUtil = {};
 	 * @returns deep copied object
 	 */
 	JsonUtil.clone = function (source) {
+		function isArray(something) {
+			return something instanceof Array;
+		}
+		function isObject(something) {
+			return something instanceof Object;
+		}
+		function isNest(something) {
+			return (something !== null && isObject(something)) ||
+					isArray(something);
+		}
+
+		function cloneArray() {
+			var res = [];
+			var idx, item, length = source.length;
+			for (idx = 0; idx < length; idx++) {
+				item = source[idx];
+				if (isNest(item)) {
+					res[idx] = JsonUtil.clone(item);
+				} else {
+					res[idx] = item;
+				}
+			}
+			return res;
+		}
+
+		function cloneObject() {
+			var res = {};
+			var key = "";
+			var item = null;
+			for (key in source) {
+				item = source[key];
+				if (isNest(item)) {
+					res[key] = JsonUtil.clone(item);
+				} else {
+					res[key] = item;
+				}
+			}
+			return res;
+		}
+
+		if (isArray(source)) {
+			return cloneArray();
+		} else if (isObject(source)) {
+			return cloneObject();
+		} else {
+			throw Error("invalid type: " + typeof source);
+		}
+	};
+
+	/**
+	 * @returns deep copied object
+	 */
+	JsonUtil.extractNotUndef = function (source) {
 		return JSON.parse(JSON.stringify(source));
 	};
 

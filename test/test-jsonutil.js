@@ -30,6 +30,69 @@
 		deepEqual(result, array);
 	});
 
+	test("clone nest", function () {
+		var data = {
+			prop1: "value1",
+			prop2: {
+				prop21: "value21",
+				prop22: "value22"
+			}
+		};
+		var result = JsonUtil.clone(data);
+
+		notEqual(result.prop2, data.prop2);
+		deepEqual(result, data);
+	});
+
+	test("clone undefined", function () {
+		var result = JsonUtil.clone({
+			prop1: undefined,
+			prop2: null
+		});
+
+		deepEqual(result, {
+			prop1: undefined,
+			prop2: null
+		});
+	});
+
+	test("clone invalid", function () {
+		expect(1);
+
+		try {
+			JsonUtil.clone(1);
+
+		} catch (e) {
+			equal(e.message, "invalid type: number");
+		}
+	});
+
+	test("extractNotUndef object", function () {
+		var result = JsonUtil.extractNotUndef(JSON_DATA1);
+
+		notEqual(result, JSON_DATA1);
+		deepEqual(result, JSON_DATA1);
+	});
+
+	test("extractNotUndef array", function () {
+		var array = [JSON_DATA1, JSON_DATA2];
+		var result = JsonUtil.extractNotUndef(array);
+
+		notEqual(result, array);
+		deepEqual(result, array);
+	});
+
+	test("extractNotUndef undefined", function () {
+		var result = JsonUtil.extractNotUndef({
+			prop1: undefined,
+			prop2: null
+		});
+
+		deepEqual(result, {
+			prop2: null
+		});
+	});
+
 	test("alias frist", function () {
 		var result = JsonUtil.alias(JSON_DATA1, {
 			prop1: "alias1"
